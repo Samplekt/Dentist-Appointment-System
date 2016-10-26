@@ -16,7 +16,7 @@ public class Date{
     }
 
     public void display(){
-      System.out.println("Date: "+month+"/"+day+"/"+year);
+      System.out.println(month+"/"+day+"/"+year);
     }
 
     public static void main(String[] args){
