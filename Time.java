@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Time
 {
 	private int hours;
@@ -7,48 +5,67 @@ public class Time
 
 	public Time()
 	{
-		hours = 0;
-		minutes = 0;
+	System.out.println("Constructor requires argument for hours. For 12:00 - Time(12). For 12:30 Time(12,30).");
 	}
 
 	public Time(int h,int m)
 	{
-		hours = h;
-		minutes = m;
+		if(h > 23)
+			hours = 23;
+		if(m > 59)
+			minutes = 59;
+		else{
+			hours = h;
+			minutes = m; }
 	}
+
+  public Time(int h)
+  {	if(h > 23){
+			hours = 23; }
+
+    hours = h;
+    minutes = 0;
+
+  }
 
 	public void display()
 	{
-		System.out.println("Time: " + hours + ":" + minutes);
+		System.out.printf(hours+":%02d",minutes);
+		System.out.println("");
 	}
 
-	public int addMinutes(int h, int m, int addedmin)
+	public void addMinutes(int m)
 	{
-		int total = m + addedmin;
+		int total = minutes + m;
 		if(total > 59)
 		 {
-		 	int result = total - 59;
-		 	h += 1;
-		 	m = result;
+      while(total > 59){
+		 	    total = total - 60;
+          hours +=1;
+					if(hours == 24)
+						hours = 0;
+      }
+		 	minutes = total;
 		 }
-		return m;
+    else{
+       minutes = total;
+     }
 	}
 
 	public static void main(String[] args)
-	{
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Would you like to add minutes (yes or no)? ");
-		String answer = sc.nextLine();
-		//System.out.println("/" + answer);
+	{ Time [] tm = new Time[4];
+		for (int i = 0; i < 4; i++){
+			tm[i] = new Time((i+1),30);
+			System.out.println("Time "+(i+1));
+			System.out.println("Original:");
+			tm[i].display();
+			tm[i].addMinutes(((i+1)*11));
+			System.out.println("Original + "+((i+1)*11)+" minutes:");
+			tm[i].display();
+			System.out.println("");
 
+		}
 
-
-		if (answer != "no")
-			{
-				System.out.print("How many minutes? ");
-				int numofmin = sc.nextInt();
-				m = addMinutes(hours,minutes,numofmin);
-			}
 
 	}
 }
