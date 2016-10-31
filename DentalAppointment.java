@@ -28,21 +28,22 @@ public class DentalAppointment
 			start_time = new Time(hour,minute);
 			duration = dur;
 			end_time = new Time(hour, minute + dur);
-			System.out.println(patient + "," + date + "," + start_time + "," + end_time);
+			
 	}
 }
 	public void display()
 	{
-		System.out.println("Name: " + patient);
-		System.out.println("Date: " + date);
-		System.out.println("Start Time: " + start_time);
-		System.out.println("End Time: " + end_time);
+		
+		patient.display();
+		date.display();
+		start_time.display();
+		end_time.display();
 	}
 
 
 
 	public static void main(String[] args){
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 1; i++){
 			Scanner sc = new Scanner(System.in);
 
 			System.out.println("Enter first name: ");
@@ -78,7 +79,7 @@ public class DentalAppointment
 			sc.nextLine();
 
 			DentalAppointment app = new DentalAppointment(fname,lname,month,day,year,hour,minutes,dur);
-			System.out.println("Dentist Appointment: ");
+			
 			app.display();
 			
 
