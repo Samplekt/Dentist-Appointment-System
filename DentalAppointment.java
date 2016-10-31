@@ -1,35 +1,45 @@
-import java.util.scanner;
+import java.util.Scanner;
 public class DentalAppointment
 {
 	public Date date ;
 	public Person patient;
 	public Time start_time;
 	public Time end_time;
-	private int duration;
+	public int duration;
 
 
-	DentalAppointment(String first, String last, int m, int d, int y, int hour, int minute)
+	public DentalAppointment(String first, String last, int m, int d, int y, int hour, int minute)
 	{
 		patient = new Person(first,last);
 		date = new Date(m,d,y);
 		start_time = new Time(hour,minute);
 		duration = 30;
-		end_time = start_time.addMinutes(duration);
+		end_time = new Time(hour, minute + duration);
 	}
 
-	DentalAppointment(String first, String last, int m, int d, int y, int hour, int minute, int dur)
+	public DentalAppointment(String first, String last, int m, int d, int y, int hour, int minute, int dur)
 	{
 		if(dur > 240){
-			System.out.println("Duration must be less than 240 minutes.")
+			System.out.println("Duration must be less than 240 minutes.");
 		}
 		else{
 			patient = new Person(first,last);
 			date = new Date(m,d,y);
 			start_time = new Time(hour,minute);
 			duration = dur;
-			end_time = start_time.addMinutes(duration);
+			end_time = new Time(hour, minute + dur);
+			System.out.println(patient + "," + date + "," + start_time + "," + end_time);
 	}
 }
+	public void display()
+	{
+		System.out.println("Name: " + patient);
+		System.out.println("Date: " + date);
+		System.out.println("Start Time: " + start_time);
+		System.out.println("End Time: " + end_time);
+	}
+
+
 
 	public static void main(String[] args){
 		for(int i = 0; i < 3; i++){
@@ -55,7 +65,7 @@ public class DentalAppointment
 			sc.nextLine();
 
 			System.out.println("Enter Appointment Time");
-			System.out.println("Hour: ")
+			System.out.println("Hour: ");
 			int hour = sc.nextInt();
 			sc.nextLine();
 
@@ -68,7 +78,11 @@ public class DentalAppointment
 			sc.nextLine();
 
 			DentalAppointment app = new DentalAppointment(fname,lname,month,day,year,hour,minutes,dur);
+			System.out.println("Dentist Appointment: ");
+			app.display();
+			
+
 		}
 	}
-
+	
 }
