@@ -19,6 +19,13 @@ public class Person
 		zipcode = zip;
 	}
 
+	public Person(String first, String last)
+	{
+		lastname = last;
+		firstname = first;
+		zipcode = "X";
+	}
+
 	public void display()
 	{
 		System.out.println("First Name: " + firstname);
