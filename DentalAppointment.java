@@ -27,7 +27,26 @@ public class DentalAppointment
 			date = new Date(m,d,y);
 			start_time = new Time(hour,minute);
 			duration = dur;
-			end_time = new Time(hour, minute + dur);
+			if(dur >= 30)
+			{	if((minute + dur) < 60)
+				{
+					end_time = new Time(hour, minute + dur);
+				}
+				else if((minute + dur) >= 60 && (minute + dur) < 120)
+				{
+					end_time = new Time(hour + 1,(minute + dur) - 60);
+				}
+				else if((minute + dur) >= 120 && (minute + dur) < 180)
+				{
+					end_time = new Time(hour + 2,(minute + dur) - 120);
+				}
+				else if((minute + dur) >= 180 && (minute + dur) < 240)
+				{
+					end_time = new Time(hour + 3,(minute + dur) - 180);
+				}
+			}
+			else
+				end_time = new Time(hour,minute + 30);
 			
 	}
 }
