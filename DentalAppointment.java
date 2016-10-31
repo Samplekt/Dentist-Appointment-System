@@ -14,7 +14,8 @@ public class DentalAppointment
 		date = new Date(m,d,y);
 		start_time = new Time(hour,minute);
 		duration = 30;
-		end_time = new Time(hour, minute + duration);
+		end_time = new Time(hour, minute);
+		end_time.addMinutes(duration);
 	}
 
 	public DentalAppointment(String first, String last, int m, int d, int y, int hour, int minute, int dur)
@@ -27,36 +28,22 @@ public class DentalAppointment
 			date = new Date(m,d,y);
 			start_time = new Time(hour,minute);
 			duration = dur;
-			if(dur >= 30)
-			{	if((minute + dur) < 60)
-				{
-					end_time = new Time(hour, minute + dur);
-				}
-				else if((minute + dur) >= 60 && (minute + dur) < 120)
-				{
-					end_time = new Time(hour + 1,(minute + dur) - 60);
-				}
-				else if((minute + dur) >= 120 && (minute + dur) < 180)
-				{
-					end_time = new Time(hour + 2,(minute + dur) - 120);
-				}
-				else if((minute + dur) >= 180 && (minute + dur) < 240)
-				{
-					end_time = new Time(hour + 3,(minute + dur) - 180);
-				}
-			}
-			else
-				end_time = new Time(hour,minute + 30);
-			
+			end_time = new Time(hour,minute);
+			end_time.addMinutes(duration);
 	}
 }
 	public void display()
 	{
-		
+		System.out.println("");
+		System.out.println("Appointment Details:");
 		patient.display();
+		System.out.print("Appointment Date: ");
 		date.display();
+		System.out.print("Start Time: ");
 		start_time.display();
+		System.out.print("End Time: ");
 		end_time.display();
+		System.out.println("");
 	}
 
 
@@ -65,44 +52,44 @@ public class DentalAppointment
 		for(int i = 0; i < 3; i++){
 			Scanner sc = new Scanner(System.in);
 
-			System.out.println("Enter first name: ");
+			System.out.print("Enter first name: ");
 			String fname = sc.nextLine();
 
-			System.out.println("Enter last name: ");
+			System.out.print("Enter last name: ");
 			String lname = sc.nextLine();
 
 			System.out.println("Enter Appointment Date");
-			System.out.println("Month: ");
+			System.out.print("Month: ");
 			int month = sc.nextInt();
 			sc.nextLine();
 
-			System.out.println("Day: ");
+			System.out.print("Day: ");
 			int day = sc.nextInt();
 			sc.nextLine();
 
-			System.out.println("Year: ");
+			System.out.print("Year: ");
 			int year = sc.nextInt();
 			sc.nextLine();
 
 			System.out.println("Enter Appointment Time");
-			System.out.println("Hour: ");
+			System.out.print("Hour: ");
 			int hour = sc.nextInt();
 			sc.nextLine();
 
-			System.out.println("Minutes: ");
+			System.out.print("Minutes: ");
 			int minutes = sc.nextInt();
 			sc.nextLine();
 
-			System.out.println("Enter Appointment Duration in Minutes(Less than 240): ");
+			System.out.print("Enter Appointment Duration in Minutes(Less than 240): ");
 			int dur = sc.nextInt();
 			sc.nextLine();
 
 			DentalAppointment app = new DentalAppointment(fname,lname,month,day,year,hour,minutes,dur);
-			
+
 			app.display();
-			
+
 
 		}
 	}
-	
+
 }
